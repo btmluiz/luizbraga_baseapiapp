@@ -1,11 +1,13 @@
-from django.shortcuts import render
+from django.contrib.auth import login
 
 # Create your views here.
-from rest_framework import permissions
+from rest_framework import permissions, status
 from rest_framework.authtoken.models import Token
 from rest_framework.generics import GenericAPIView
+from rest_framework.response import Response
 
 from luizbraga_baseapi import serializers
+from luizbraga_baseapi.serializers import ApiUserSerializer
 
 
 class LoginAuthToken(GenericAPIView):
