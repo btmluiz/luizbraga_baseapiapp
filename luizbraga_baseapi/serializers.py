@@ -106,11 +106,12 @@ class ApiUserSerializer(DynamicFieldsModelSerializer):
     def list_permissions(user):
         permissions = {}
         for permission in user.get_all_permissions():
-            _split = permission.split('.')
-            if _split[0] not in permissions:
-                permissions[_split[0]] = [_split[1]]
+            _split_perm = permission.split('.')[1]
+            _split = _split_perm.split('_')
+            if _split[1] not in permissions:
+                permissions[_split[1]] = [_split[0]]
             else:
-                permissions[_split[0]].append(_split[1])
+                permissions[_split[1]].append(_split[0])
         return permissions
 
     class Meta:
